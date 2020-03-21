@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        我是---{{person.name}}--{{msg}}
+        <p v-html='htmlStr'></p>
+        <h4 v-class='className' class='heaven'>我是标题</h4>
+        <input type="text" v-model='msg'>
+        <ul>
+            <li>{{msg}}</li>
+            <li>{{msg}}</li>
+        </ul>
+        <p v-text='msg'></p>
+        <button v-on:click='handleClick'>点击</button>
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <script src='./myvue.js'></script>
+    <script src='./compiler.js'></script>
+    <script>
+        let vm = new MyVue({
+            el: "#app",
+            data: {
+                msg: '我是根组件的数据',
+                person: {
+                    name: 'heaven',
+                },
+                htmlStr: '<span>我是v-html指令的文本</span>',
+                className: 'heaven',
+            },
+            methods: {
+                handleClick() {
+                    console.log('触发点击了')
+                }
+            }
+        })
+        //下面的表现称为数据代理  vm代理data
+        // console.log(vm.msg)  获取data中msg属性 可以直接通过vm获取
+        // vm.msg = 'msg已经被更改了' //设置data中msg属性  可以直接通过vm设置
+    </script>
+</body>
+
+</html>
